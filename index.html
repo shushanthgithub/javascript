@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Manager</title>
+
+
+</head>
+
+<body>
+    <h1>Personal Finance Manager</h1>
+    <h3>Balance: </h3>
+
+    <input type="text" id="title" placeholder="Description">
+    <input type="number" id="amount" placeholder="Amount">
+
+    <select id="cate">
+        <option value="income">Income</option>
+        <option value="Expenses">Expenses</option>
+    </select>
+    <button id="btn">Add</button>
+    <h2 id="total"></h2>
+    <div class="pie"></div>
+
+    <script>
+        const addBtn = document.getElementById("btn");
+        let sum = 0;
+
+
+        addBtn.addEventListener("click", () => {
+            const title = document.getElementById("title").value;
+            const amount = Number(document.getElementById("amount").value);
+            const category = document.getElementById("cate").value;
+            const totalElement = document.getElementById("total");
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "delete";
+
+
+
+            deleteBtn.addEventListener("click", () => {
+
+                sum -= amount;
+                totalElement.innerText = sum;
+                document.body.removeChild(para);
+                update();
+            });
+
+            sum += amount;
+            const para = document.createElement("p");
+            totalElement.innerText = sum;
+
+            para.innerText = `${title} ${amount} ${category}`;
+            para.appendChild(deleteBtn);
+            document.body.appendChild(para);
+            update();
+        });
+
+        function update() {
+            const totalAmount = obj.income + obj.Expenses;
+            const incomePercent = (obj.income / totalAmount) * 100;
+            const expensesPercent = (obj.Expenses / totalAmount) * 100;
+        }
+    </script>
+
+</body>
+
+</html>
